@@ -3,6 +3,8 @@ import random
 import argparse
 
 from pyclustering.cluster.kmedoids import kmedoids
+from pyclustering.cluster.silhouette import silhouette
+import numpy as np
 
 from data import load_data, visualize
 
@@ -21,6 +23,7 @@ if __name__ == '__main__':
     random.seed = 1
     data, clusters_amount = load_data(args.file)
     time, clusters, medoids = run_pam(data, random.sample(range(len(data)), clusters_amount))
-    print(time)
+    print(f'Time: {time}')
+    print(f'Silhouette score: {np.mean(silhouette(data, clusters).process().get_score())}')
     if args.plot:
         visualize(data, clusters, medoids)

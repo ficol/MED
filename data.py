@@ -1,5 +1,4 @@
 import csv
-import argparse
 
 import numpy as np
 from pyclustering.cluster import cluster_visualizer
@@ -31,9 +30,29 @@ def visualize(data, clusters, medoids):
     visualizer.show()
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('file', type=str, default=None, help='filename to save data')
-    args = parser.parse_args()
     np.random.seed(10)
-    data = generate_gaussian_clusters(3, [[0,0], [10,10], [100,100]], [[[1,0],[0,1]],[[1,0],[0,1]],[[1,0],[0,1]]], [10000,10000,10000])
-    save_data(args.file, data)
+    dim = 10
+    size = 10000
+    data1 = generate_gaussian_clusters(3, [dim * [0], dim * [1], dim * [-1]], 3 * [np.identity(dim).tolist()], 3 * [size])
+    save_data('data/normal1', data1)
+
+    dim = 50
+    size = 10000
+    data2 = generate_gaussian_clusters(3, [dim * [0], dim * [1], dim * [-1]], 3 * [np.identity(dim).tolist()], 3 * [size])
+    save_data('data/normal2', data2)
+
+    dim = 100
+    size = 10000
+    data3 = generate_gaussian_clusters(3, [dim * [0], dim * [3], dim * [-3]], 3 * [np.identity(dim).tolist()], 3 * [size])
+    save_data('data/normal3', data3)
+
+    dim = 10
+    size = 20000
+    data4 = generate_gaussian_clusters(3, [dim * [0], dim * [3], dim * [-3]], 3 * [np.identity(dim).tolist()], 3 * [size])
+    save_data('data/normal4', data4)
+
+    dim = 10
+    size = 30000
+    data5 = generate_gaussian_clusters(3, [dim * [0], dim * [3], dim * [-3]], 3 * [np.identity(dim).tolist()], 3 * [size])
+    save_data('data/normal5', data5)
+

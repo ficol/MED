@@ -12,11 +12,12 @@ class Clarans:
     
     def cluster(self):
         i = 1
-        while i < self.numlocal:
+        while i <= self.numlocal:
             current_medoids = random.sample(range(len(self.data)), self.clusters_amount)
             current_clusters, current_cost = self.update_clusters(current_medoids)
             j = 1
-            while j < self.maxneighbor:
+            while j <= self.maxneighbor:
+                # print(i, j, self.maxneighbor)
                 neighbor_medoids = self.get_neighbor_medoids(list(current_medoids))
                 neighbor_clusters, neighbor_cost = self.update_clusters(neighbor_medoids) 
                 if neighbor_cost < current_cost:
